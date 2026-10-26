@@ -11,28 +11,54 @@ Office.onReady(() => {
 	if (sideload) sideload.style.display = "none";
 	const app = document.getElementById("app-body");
 	if (app) app.style.display = "flex";
-	const run2 = document.getElementById("run");
-	if (run2) (run2 as HTMLButtonElement).onclick = run;
+
+	const insertBtn = document.getElementById("insert-names-btn");
+	if (insertBtn) (insertBtn as HTMLButtonElement).onclick = insertNames;
+
+	const readBtn = document.getElementById("read-names-btn");
+	if (readBtn) (readBtn as HTMLButtonElement).onclick = readNames;
 });
 
-export async function run() {
+export async function insertNames() {
 	try {
 		await Excel.run(async (context: Excel.RequestContext) => {
-			/**
-			 * Insert your Excel code here
-			 */
-			const range = context.workbook.getSelectedRange();
-
-			// Read the range address
-			range.load("address");
-
-			// Update the fill color
-			range.format.fill.color = "yellow";
-
+			const sheet = context.workbook.worksheets.getActiveWorksheet();
+			sheet.names.add("udf_name", "=ADD(1,2)");
+			sheet.names.add("sum_name", "=SUM(1,2)");
 			await context.sync();
-			console.log(`The range address was ${range.address}.`);
 		});
 	} catch (error) {
+		console.error(error);
+	}
+}
+
+function formatNamedItem(item: Excel.NamedItem): string {
+	return (
+		`Name:    ${item.name}\n` +
+		`Type:    ${item.type}\n` +
+		`Formula: ${item.formula}\n` +
+		`Value:   ${JSON.stringify(item.value)}`
+	);
+}
+
+export async function readNames() {
+	const resultEl = document.getElementById("read-result");
+	if (resultEl) resultEl.textContent = "Reading…";
+	try {
+		await Excel.run(async (context: Excel.RequestContext) => {
+			const sheet = context.workbook.worksheets.getActiveWorksheet();
+			const udfItem = sheet.names.getItem("udf_name");
+			const sumItem = sheet.names.getItem("sum_name");
+			udfItem.load(["name", "value", "type", "formula"]);
+			sumItem.load(["name", "value", "type", "formula"]);
+			await context.sync();
+			const text =
+				`--- udf_name ---\n${formatNamedItem(udfItem)}\n\n` +
+				`--- sum_name ---\n${formatNamedItem(sumItem)}`;
+			if (resultEl) resultEl.textContent = text;
+		});
+	} catch (error) {
+		if (resultEl) resultEl.textContent = `Error: ${error}`;
 		console.error(error);
 	}
 }

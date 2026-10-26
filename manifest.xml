@@ -44,7 +44,6 @@
             <Metadata>
               <SourceLocation resid="Functions.Metadata.Url" />
             </Metadata>
-            <Namespace resid="Functions.Namespace" />
           </ExtensionPoint>
         </AllFormFactors>
         <DesktopFormFactor>
@@ -79,36 +78,6 @@
                     <SourceLocation resid="Taskpane.Url" />
                   </Action>
                 </Control>
-                <Control xsi:type="Button" id="OpenDialogButton">
-                  <Label resid="OpenDialogButton.Label" />
-                  <Supertip>
-                    <Title resid="OpenDialogButton.Label" />
-                    <Description resid="OpenDialogButton.Tooltip" />
-                  </Supertip>
-                  <Icon>
-                    <bt:Image size="16" resid="Icon.16x16" />
-                    <bt:Image size="32" resid="Icon.32x32" />
-                    <bt:Image size="80" resid="Icon.80x80" />
-                  </Icon>
-                  <Action xsi:type="ExecuteFunction">
-                    <FunctionName>openDialog</FunctionName>
-                  </Action>
-                </Control>
-                <Control xsi:type="Button" id="InsertAddFormulaButton">
-                  <Label resid="InsertAddFormulaButton.Label" />
-                  <Supertip>
-                    <Title resid="InsertAddFormulaButton.Label" />
-                    <Description resid="InsertAddFormulaButton.Tooltip" />
-                  </Supertip>
-                  <Icon>
-                    <bt:Image size="16" resid="Icon.16x16" />
-                    <bt:Image size="32" resid="Icon.32x32" />
-                    <bt:Image size="80" resid="Icon.80x80" />
-                  </Icon>
-                  <Action xsi:type="ExecuteFunction">
-                    <FunctionName>insertAddFormula</FunctionName>
-                  </Action>
-                </Control>
               </Group>
             </OfficeTab>
           </ExtensionPoint>
@@ -128,18 +97,13 @@
         <bt:Url id="Taskpane.Url" DefaultValue="https://localhost:3000/taskpane.html"/>
       </bt:Urls>
       <bt:ShortStrings>
-        <bt:String id="Functions.Namespace" DefaultValue="CONTOSO" />
         <bt:String id="GetStarted.Title" DefaultValue="Get started with your sample add-in!" />
         <bt:String id="CommandsGroup.Label" DefaultValue="Commands Group" />
         <bt:String id="TaskpaneButton.Label" DefaultValue="Show Task Pane" />
-        <bt:String id="OpenDialogButton.Label" DefaultValue="Open Dialog" />
-        <bt:String id="InsertAddFormulaButton.Label" DefaultValue="Insert ADD Formula" />
       </bt:ShortStrings>
       <bt:LongStrings>
         <bt:String id="GetStarted.Description" DefaultValue="Your sample add-in loaded successfully. Go to the HOME tab and click the 'Show Task Pane' button to get started." />
         <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Click to Show a Task Pane" />
-        <bt:String id="OpenDialogButton.Tooltip" DefaultValue="Opens taskpane.html in an Office Dialog" />
-        <bt:String id="InsertAddFormulaButton.Tooltip" DefaultValue="Writes =CONTOSO.ADD(1,2) into the selected cell" />
       </bt:LongStrings>
     </Resources>
   </VersionOverrides>

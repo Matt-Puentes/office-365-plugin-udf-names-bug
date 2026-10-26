@@ -29,6 +29,28 @@
     <div class="ms-bgColor-neutralLighter">
         <p>Please reference provided reproduction steps for more information</p>
     </div>
+    <div id="app-body" class="ms-bgColor-neutralLighter" style="display: none; flex-direction: column; padding: 16px; gap: 20px;">
+        <section>
+            <p class="ms-font-m" style="margin: 0 0 8px 0; font-weight: 600;">
+                Step 1: Insert Named objects into the sheet
+            </p>
+            <p class="ms-font-s" style="margin: 0 0 8px 0;">
+                Inserts <code>udf_name</code> (=add(1,2)) and <code>sum_name</code> (=SUM(1,2)) on the active sheet.
+            </p>
+            <button id="insert-names-btn" type="button" class="ms-Button ms-Button--primary">
+                <span class="ms-Button-label">Insert Names</span>
+            </button>
+        </section>
+        <section>
+            <p class="ms-font-m" style="margin: 0 0 8px 0; font-weight: 600;">
+                Step 2: Attempt to read values from sheet
+            </p>
+            <button id="read-names-btn" type="button" class="ms-Button ms-Button--primary">
+                <span class="ms-Button-label">Read Named Values</span>
+            </button>
+            <p id="read-result" style="margin: 8px 0 0 0; word-break: break-all; white-space: pre-wrap;"></p>
+        </section>
+    </div>
 </body>
 
 </html>
